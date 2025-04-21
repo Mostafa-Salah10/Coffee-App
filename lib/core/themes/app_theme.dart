@@ -18,6 +18,8 @@ abstract class AppTheme {
       headlineMedium: AppTextStyles.poppins25BoldStyle,
       labelLarge: AppTextStyles.poppins30BoldStyle,
       labelMedium: AppTextStyles.poppins16BoldGrayStyle,
+      bodyLarge: AppTextStyles.poppins20BoldStyle,
+      labelSmall: AppTextStyles.poppins15BoldWhiteStyle,
     ),
 
     iconTheme: IconThemeData(color: AppColors.white, size: 25),

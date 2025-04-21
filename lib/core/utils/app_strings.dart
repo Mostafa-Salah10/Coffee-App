@@ -17,4 +17,11 @@ abstract class AppStrings {
   static const String dontHaveAccount = "Don't have an account ? ";
   static const String fieldRequired = 'Field is Required';
   static const String fieldShort = 'Field Must be more than 10 characters';
+  static const String locationName = 'Ain Shams';
+  static const String search = 'Search';
+  static const String categories = 'Categories';
+  static const String cappuccino = 'Cappuccino';
+  static const String tea = 'Tea';
+  static const String latte = 'Latte';
+  static const String espresso = 'Espresso';
 }

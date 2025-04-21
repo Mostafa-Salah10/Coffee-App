@@ -41,9 +41,19 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.darkBlack,
   );
+  static final poppins20BoldStyle = _textStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.darkBlack,
+  );
   static final poppins16BoldGrayStyle = _textStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
     color: AppColors.ligthGray,
+  );
+  static final poppins15BoldWhiteStyle = _textStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
   );
 }
