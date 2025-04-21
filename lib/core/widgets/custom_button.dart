@@ -1,6 +1,5 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -23,8 +22,7 @@ class CustomButton extends StatelessWidget {
       padding: EdgeInsets.only(right: 5, left: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [_textWidget(context), SizedBox(width: 12.w), _arrowWidget()],
+        children: [Spacer(), _textWidget(context), Spacer(), _arrowWidget()],
       ),
     );
   }

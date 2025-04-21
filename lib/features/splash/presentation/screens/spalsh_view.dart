@@ -20,7 +20,7 @@ class _SpalshViewState extends State<SpalshView> {
   }
 
   Future<void> _navigateToPage() async {
-    Future.delayed(Duration(seconds: 4), () {
+    Future.delayed(Duration(seconds: 5), () {
       customPushReplacement(context, route: AppRoutes.onboardingScreen);
     });
   }
