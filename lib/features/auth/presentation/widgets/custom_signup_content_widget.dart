@@ -1,3 +1,4 @@
+import 'package:coffee_app/core/functions/custom_navigator.dart';
 import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
@@ -44,7 +45,12 @@ class CsutomSignUpContentWidget extends StatelessWidget {
             CustomButton(
               text: AppStrings.signUp,
               onPressed: () {
-                if (auth.signUpKey.currentState!.validate()) {}
+                if (auth.signUpKey.currentState!.validate()) {
+                  customPushReplacement(
+                    context,
+                    route: AppRoutes.bottomNavBarScreen,
+                  );
+                }
               },
             ),
             SizedBox(height: 20.h),
