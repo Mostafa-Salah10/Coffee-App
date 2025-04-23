@@ -18,19 +18,23 @@ class CupCarouselSlider extends StatelessWidget {
             itemBuilder: (context, index, pageViewIndex) {
               return Container(
                 padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [AppColors.sliderColor, AppColors.black],
-                  ),
-                ),
+                decoration: _getContainerDecoraion(),
                 child: CustomCupStackWidget(),
               );
             },
           );
         },
+      ),
+    );
+  }
+
+  BoxDecoration _getContainerDecoraion() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [AppColors.sliderColor, AppColors.black],
       ),
     );
   }

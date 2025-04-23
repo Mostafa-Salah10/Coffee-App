@@ -2,20 +2,16 @@ import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomRateWidget extends StatelessWidget {
-  const CustomRateWidget({
-    super.key,
-  });
+  const CustomRateWidget({super.key, this.color = AppColors.ligthGray});
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 3,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: AppColors.ligthGray,
+        color: color,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -25,10 +21,9 @@ class CustomRateWidget extends StatelessWidget {
           SizedBox(width: 5),
           Text(
             "3.5",
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(color: AppColors.white),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall!.copyWith(color: AppColors.white),
           ),
         ],
       ),

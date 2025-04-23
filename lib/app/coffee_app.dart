@@ -16,7 +16,7 @@ class CoffeeApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.themeData,
             onGenerateRoute: AppRouter.onGenerateRoute,
-            initialRoute: AppRoutes.bottomNavBarScreen,
+            initialRoute: AppRoutes.detailsCupScreen,
           ),
     );
   }
