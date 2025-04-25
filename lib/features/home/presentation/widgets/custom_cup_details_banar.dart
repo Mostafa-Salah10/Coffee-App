@@ -1,6 +1,7 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/assets.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_rounded_icon_appbar.dart';
+import 'package:coffee_app/main.dart';
 import 'package:flutter/material.dart';
 
 class CustomCupDetailsBanar extends StatelessWidget {
@@ -22,17 +23,22 @@ class CustomCupDetailsBanar extends StatelessWidget {
           decoration: _getContainerDecoraion(),
           child: Stack(
             clipBehavior: Clip.none,
-            children: [_getAppBarCup(), _getStackImage()],
+            children: [_getAppBarCup(context), _getStackImage()],
           ),
         ),
       ),
     );
   }
 
-  Row _getAppBarCup() {
+  Row _getAppBarCup(context) {
     return Row(
       children: [
-        CustomRoundedIconAppBar(icon: Icons.arrow_back),
+        CustomRoundedIconAppBar(
+          icon: Icons.arrow_back,
+          onTap: () {
+            navigatorKey.currentState?.pop(context);
+          },
+        ),
         Spacer(),
         CustomRoundedIconAppBar(icon: Icons.favorite),
       ],

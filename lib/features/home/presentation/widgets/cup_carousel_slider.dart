@@ -49,7 +49,7 @@ class CupCarouselSlider extends StatelessWidget {
       enlargeCenterPage: true,
       scrollDirection: Axis.horizontal,
       viewportFraction: 0.70,
-      enlargeFactor: 0.2,
+      enlargeFactor: 0.180,
     );
   }
 }

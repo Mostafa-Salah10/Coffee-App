@@ -1,6 +1,7 @@
 import 'package:coffee_app/core/routes/app_router.dart';
 import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/themes/app_theme.dart';
+import 'package:coffee_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,10 +14,11 @@ class CoffeeApp extends StatelessWidget {
       designSize: const Size(360, 690),
       builder:
           (context, child) => MaterialApp(
+            navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.themeData,
             onGenerateRoute: AppRouter.onGenerateRoute,
-            initialRoute: AppRoutes.detailsCupScreen,
+            initialRoute: AppRoutes.splashScreen,
           ),
     );
   }
