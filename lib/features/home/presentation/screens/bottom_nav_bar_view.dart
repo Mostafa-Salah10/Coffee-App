@@ -1,4 +1,5 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
+import 'package:coffee_app/features/home/presentation/screens/favorite_view.dart';
 import 'package:coffee_app/features/home/presentation/screens/home_veiw.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
   List<Widget> _buildScreens() {
     return [
       HomeVeiw(),
-      Center(child: Text("Screen Two")),
+      Center(child: FavoriteView()),
       Center(child: Text("Screen Three")),
     ];
   }

@@ -65,6 +65,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getFavCoffees() async {
     favList.clear();
+    favSet.clear();
     emit(HomeGetFavLoadingState());
     try {
       favList = _getFromDB(listName: HiveConstants.favList).cast<CoffeeModel>();
