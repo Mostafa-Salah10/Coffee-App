@@ -1,5 +1,6 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
+import 'package:coffee_app/features/home/data/models/coffee_model.dart';
 import 'package:coffee_app/features/home/presentation/widgets/cup_readmore_text_description.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_cup_details_banar.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_details_cup_footer.dart';
@@ -10,7 +11,8 @@ import 'package:coffee_app/features/home/presentation/widgets/custom_volume_coun
 import 'package:flutter/material.dart';
 
 class CupDetailsView extends StatelessWidget {
-  const CupDetailsView({super.key});
+  const CupDetailsView({super.key, required this.coffeeModel});
+  final CoffeeModel coffeeModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,34 +20,41 @@ class CupDetailsView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomCupDetailsBanar(),
+          CustomCupDetailsBanar(coffeeModel: coffeeModel),
           SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomRateWidget(color: AppColors.arrowButton),
+                CustomRateWidget(
+                  color: AppColors.arrowButton,
+                  rate: coffeeModel.rate,
+                ),
                 SizedBox(height: 10),
-                _getNamePriceWidget(context),
+                _getNamePriceWidget(
+                  context,
+                  coffeeModel.categoryName,
+                  coffeeModel.price,
+                ),
                 SizedBox(height: 15),
                 Text(
                   AppStrings.coffee,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: 10),
-                CustomSizeCupWidget(),
+                CustomSizeCupWidget(cofeeSize: coffeeModel.coffeeSize),
                 SizedBox(height: 10),
                 Text(
                   AppStrings.about,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: 10),
-                CupReadmoreTextDescription(text: AppStrings.desc),
+                CupReadmoreTextDescription(text: coffeeModel.description),
                 SizedBox(height: 10),
-                CustomVolumeCounterWidget(),
+                CustomVolumeCounterWidget(coffeeModel: coffeeModel),
                 SizedBox(height: 30),
-                CustomDetailsCupFooter(),
+                CustomDetailsCupFooter(coffeeModel: coffeeModel),
               ],
             ),
           ),
@@ -54,12 +63,16 @@ class CupDetailsView extends StatelessWidget {
     );
   }
 
-  Row _getNamePriceWidget(BuildContext context) {
+  Row _getNamePriceWidget(
+    BuildContext context,
+    String categoryName,
+    double price,
+  ) {
     return Row(
       children: [
-        Text("Cappuccino", style: Theme.of(context).textTheme.headlineLarge),
+        Text(categoryName, style: Theme.of(context).textTheme.headlineLarge),
         Spacer(),
-        CustomTextContainerWidget(text: "\$ 25.40"),
+        CustomTextContainerWidget(price: price),
       ],
     );
   }

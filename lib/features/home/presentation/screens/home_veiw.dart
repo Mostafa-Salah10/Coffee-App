@@ -1,10 +1,8 @@
-import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
 import 'package:coffee_app/features/home/presentation/widgets/cup_carousel_slider.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_catergory_listview.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_home_appbar.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_search_widget.dart';
-import 'package:coffee_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,13 +31,7 @@ class HomeVeiw extends StatelessWidget {
             SizedBox(height: 15.h),
             CustomCategoryListView(),
             Expanded(
-              child: InkWell(
-                onTap:
-                    () => navigatorKey.currentState?.pushNamed(
-                      AppRoutes.detailsCupScreen,
-                    ),
-                child: CupCarouselSlider(),
-              ),
+              child: CupCarouselSlider(),
             ),
             SizedBox(height: 25.h),
           ],

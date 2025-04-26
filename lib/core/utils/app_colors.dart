@@ -9,5 +9,6 @@ abstract class AppColors {
   static const Color arrowButton = Color(0xFFa97c37);
   static const Color sliderColor = Color(0xFF653d19);
   static const Color red = Colors.red;
+  static const Color green = Colors.green;
   static const Color specialBlack = Colors.black12;
 }

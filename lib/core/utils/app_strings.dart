@@ -29,6 +29,8 @@ abstract class AppStrings {
   static const String readMore = 'Read More';
   static const String readLess = '...Read Less';
   static const String buyNow = 'Buy Now';
+  static const String addedToCart = 'Coffee Added To Cart Successfully';
+  static const String addedToCartFailure = 'Coffee Added To Cart Already';
   static const String desc =
       'A classic Italian coffee drink made with equal parts of rich espresso, steamed milk, and a thick layer of foamed milk. Cappuccino is known for its bold flavor and creamy texture';
 }
