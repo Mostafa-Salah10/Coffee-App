@@ -37,7 +37,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
       items: _navBarsItems(),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
-      hideNavigationBarWhenKeyboardAppears: true,
+      hideNavigationBarWhenKeyboardAppears: false,
       backgroundColor: AppColors.white,
       isVisible: true,
       // confineToSafeArea: true,

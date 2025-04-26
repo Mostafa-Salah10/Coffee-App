@@ -3,6 +3,7 @@ import 'package:coffee_app/core/functions/toast_alert.dart';
 import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/features/home/data/manager/cubit/home_cubit.dart';
+import 'package:coffee_app/features/home/data/models/coffee_model.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_cuup_stack_widget.dart';
 import 'package:coffee_app/main.dart';
 import 'package:flutter/material.dart';
@@ -25,32 +26,38 @@ class CupCarouselSlider extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return state is HomeGetCoffeesLoadingStates
-                  ? Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.sliderColor,
-                    ),
-                  )
-                  : CarouselSlider.builder(
-                    itemCount: home.coffeeList.length,
-                    options: _getCarouselOptions(size.maxHeight * 0.78),
-                    itemBuilder: (context, index, pageViewIndex) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        decoration: _getContainerDecoraion(),
-                        child: InkWell(
-                          onTap:
-                              () => navigatorKey.currentState?.pushNamed(
-                                AppRoutes.detailsCupScreen,
-                                arguments: home.coffeeList[index],
-                              ),
-                          child: CustomCupStackWidget(
-                            coffeeModel: home.coffeeList[index],
-                          ),
+              if (state is HomeGetCoffeesLoadingStates) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.sliderColor,
+                  ),
+                );
+              } else {
+                List<CoffeeModel> coffeeList =
+                    home.filterCoffeeList.isEmpty
+                        ? home.coffeeList
+                        : home.filterCoffeeList;
+                return CarouselSlider.builder(
+                  itemCount: coffeeList.length,
+                  options: _getCarouselOptions(size.maxHeight * 0.78),
+                  itemBuilder: (context, index, pageViewIndex) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      decoration: _getContainerDecoraion(),
+                      child: InkWell(
+                        onTap:
+                            () => navigatorKey.currentState?.pushNamed(
+                              AppRoutes.detailsCupScreen,
+                              arguments: coffeeList[index],
+                            ),
+                        child: CustomCupStackWidget(
+                          coffeeModel: coffeeList[index],
                         ),
-                      );
-                    },
-                  );
+                      ),
+                    );
+                  },
+                );
+              }
             },
           );
         },

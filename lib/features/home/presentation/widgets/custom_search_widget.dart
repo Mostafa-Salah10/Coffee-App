@@ -1,6 +1,8 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
+import 'package:coffee_app/features/home/data/manager/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomSearchWidget extends StatelessWidget {
   const CustomSearchWidget({super.key});
@@ -8,7 +10,9 @@ class CustomSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) {},
+      onChanged: (value) {
+        context.read<HomeCubit>().searchOfCoffees(word: value);
+      },
       cursorColor: AppColors.ligthGray,
       decoration: InputDecoration(
         filled: true,
@@ -26,15 +30,15 @@ class CustomSearchWidget extends StatelessWidget {
 
   Container _getSuffixIcon() {
     return Container(
-        margin: const EdgeInsets.all(7),
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: AppColors.arrowButton,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(Icons.search, color: AppColors.white, size: 30),
-      );
+      margin: const EdgeInsets.all(7),
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: AppColors.arrowButton,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(Icons.search, color: AppColors.white, size: 30),
+    );
   }
 
   OutlineInputBorder _getOutlineTextFieldBorder({required Color color}) {

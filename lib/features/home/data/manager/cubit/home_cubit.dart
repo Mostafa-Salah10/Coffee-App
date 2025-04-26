@@ -13,6 +13,8 @@ class HomeCubit extends Cubit<HomeState> {
   List<CoffeeModel> coffeeList = [];
   List<CoffeeModel> favList = [];
   List<CoffeeModel> cartList = [];
+  List<CoffeeModel> allCoffeeList = [];
+  List<CoffeeModel> filterCoffeeList = [];
   int coffeeSizeCurrentIndex = 0;
   int categoryCurrentIndex = 0;
   Set<String> favSet = {};
@@ -149,6 +151,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeInitialState());
   }
 
+  //add or remove from fav
   Future<void> addOrRemoveFavorites({required CoffeeModel coffeeModel}) async {
     emit(HomeAddOrRemoveToFavLoadingState());
     try {
@@ -164,6 +167,25 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeAddOrRemoveToFavtSuccessState());
     } catch (e) {
       emit(HomeAddOrRemoveToFavFailureState(error: e.toString()));
+    }
+  }
+
+  /// Search In DB
+  Future<void> searchOfCoffees({required String word}) async {
+    filterCoffeeList.clear();
+    allCoffeeList.clear();
+    if (word.isEmpty) {
+      emit(HomeGetCoffeesSuccessState());
+      return;
+    }
+    emit(HomeGetCoffeesLoadingStates());
+    try {
+      allCoffeeList =
+          _getFromDB(listName: HiveConstants.coffeeList).cast<CoffeeModel>();
+      filterCoffeeList = _getFilterationList(word);
+      emit(HomeGetCoffeesSuccessState());
+    } catch (e) {
+      emit(HomeGetCoffeesFailureState(error: e.toString()));
     }
   }
 
@@ -191,5 +213,14 @@ class HomeCubit extends Cubit<HomeState> {
       key: listName,
       value: list,
     );
+  }
+
+  List<CoffeeModel> _getFilterationList(String word) {
+    return allCoffeeList
+        .where(
+          (element) =>
+              element.categoryName.toLowerCase().startsWith(word.toLowerCase()),
+        )
+        .toList();
   }
 }
