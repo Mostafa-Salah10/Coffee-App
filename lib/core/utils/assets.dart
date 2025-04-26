@@ -26,6 +26,10 @@ class Assets {
   /// assets/images/cupIcon.PNG
   static const String assetsImagesCupIcon = "assets/images/cupIcon.PNG";
 
+  /// Assets for assetsImagesEmpytList
+  /// assets/images/Empyt_list.json
+  static const String assetsImagesEmpytList = "assets/images/Empyt_list.json";
+
   /// Assets for assetsImagesEspresso
   /// assets/images/espresso.png
   static const String assetsImagesEspresso = "assets/images/espresso.png";

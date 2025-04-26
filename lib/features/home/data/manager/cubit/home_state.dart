@@ -51,6 +51,15 @@ final class HomeGetFavFailureState extends HomeState {
 
   HomeGetFavFailureState({required this.error});
 }
+final class HomeGetCarttSuccessState extends HomeState {}
+
+final class HomeGetCartLoadingState extends HomeState {}
+
+final class HomeGetCartFailureState extends HomeState {
+  final String error;
+
+  HomeGetCartFailureState({required this.error});
+}
 
 final class HomeIncrementORDecrementQuantityState extends HomeState {
   final int quantity;

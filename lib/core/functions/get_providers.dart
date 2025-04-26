@@ -11,7 +11,8 @@ List<SingleChildWidget> get getProviders {
       create:
           (context) =>
               HomeCubit()
-                ..getCoffeesCategory(categoryName: AppStrings.cappuccino),
+                ..getCoffeesCategory(categoryName: AppStrings.cappuccino)
+                ..getCartCoffees(),
     ),
   ];
 }

@@ -12,6 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<CategoryModel> categoryList = [];
   List<CoffeeModel> coffeeList = [];
   List<CoffeeModel> favList = [];
+  List<CoffeeModel> cartList = [];
   int coffeeSizeCurrentIndex = 0;
   int categoryCurrentIndex = 0;
   Set<String> favSet = {};
@@ -63,6 +64,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  //get Favortie Coffees
   Future<void> getFavCoffees() async {
     favList.clear();
     favSet.clear();
@@ -78,12 +80,24 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
+  //get Cart Coffees
+  Future<void> getCartCoffees() async {
+    cartList.clear();
+    emit(HomeGetCartLoadingState());
+    try {
+      cartList =
+          _getFromDB(listName: HiveConstants.cartList).cast<CoffeeModel>();
+
+      emit(HomeGetCarttSuccessState());
+    } catch (e) {
+      emit(HomeGetCartFailureState(error: e.toString()));
+    }
+  }
+
+  //Add Coffee To Cart
   Future<void> addCoffeeToCart({required CoffeeModel coffeeModel}) async {
     emit(HomeAddOrRemoveToCartLoadingState());
     try {
-      List<CoffeeModel> cartList = [];
-      cartList =
-          _getFromDB(listName: HiveConstants.cartList).cast<CoffeeModel>();
       if (cartList.contains(coffeeModel)) {
         emit(
           HomeAddOrRemoveToCartFailureState(
@@ -93,6 +107,18 @@ class HomeCubit extends Cubit<HomeState> {
         return;
       }
       cartList.add(coffeeModel);
+      _putInDBt(cartList, HiveConstants.cartList);
+      emit(HomeAddOrRemoveToCartSuccessState());
+    } catch (e) {
+      emit(HomeAddOrRemoveToCartFailureState(error: e.toString()));
+    }
+  }
+
+  //Remove Coffee To Cart
+  Future<void> removeCoffeeFromCart({required CoffeeModel coffeeModel}) async {
+    emit(HomeAddOrRemoveToCartLoadingState());
+    try {
+      cartList.remove(coffeeModel);
       _putInDBt(cartList, HiveConstants.cartList);
       emit(HomeAddOrRemoveToCartSuccessState());
     } catch (e) {

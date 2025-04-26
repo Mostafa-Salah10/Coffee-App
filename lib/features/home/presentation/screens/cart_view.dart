@@ -7,32 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-class FavoriteView extends StatelessWidget {
-  const FavoriteView({super.key});
+class CartView extends StatelessWidget {
+  const CartView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final home = context.read<HomeCubit>();
     return SafeArea(
       child: Scaffold(
-        appBar: _getAppBarFav(context),
+        appBar: _getAppBarCart(context),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              return home.favList.isEmpty
+              return home.cartList.isEmpty
                   ? Center(child: Lottie.asset(Assets.assetsImagesEmpytList))
                   : ListView.separated(
                     shrinkWrap: true,
-                    itemCount: home.favList.length,
+                    itemCount: home.cartList.length,
                     separatorBuilder:
                         (context, index) => const SizedBox(height: 10),
                     itemBuilder: (context, index) {
                       return CustomFavCartItem(
-                        coffeeModel: home.favList[index],
+                        coffeeModel: home.cartList[index],
                         onTap: () {
-                          home.addOrRemoveFavorites(
-                            coffeeModel: home.favList[index],
+                          home.removeCoffeeFromCart(
+                            coffeeModel: home.cartList[index],
                           );
                         },
                       );
@@ -45,10 +45,13 @@ class FavoriteView extends StatelessWidget {
     );
   }
 
-  AppBar _getAppBarFav(BuildContext context) {
+  AppBar _getAppBarCart(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.white,
-      title: Text(AppStrings.fav, style: Theme.of(context).textTheme.bodyLarge),
+      title: Text(
+        AppStrings.cart,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
       centerTitle: true,
     );
   }

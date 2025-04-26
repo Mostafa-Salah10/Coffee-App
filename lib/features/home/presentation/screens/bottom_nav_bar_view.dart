@@ -1,4 +1,5 @@
 import 'package:coffee_app/core/utils/app_colors.dart';
+import 'package:coffee_app/features/home/presentation/screens/cart_view.dart';
 import 'package:coffee_app/features/home/presentation/screens/favorite_view.dart';
 import 'package:coffee_app/features/home/presentation/screens/home_veiw.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +50,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
     return [
       HomeVeiw(),
       Center(child: FavoriteView()),
-      Center(child: Text("Screen Three")),
+      Center(child: CartView()),
     ];
   }
 
