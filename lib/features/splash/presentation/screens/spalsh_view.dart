@@ -3,6 +3,7 @@ import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
 import 'package:coffee_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
 class SpalshView extends StatefulWidget {
@@ -36,9 +37,12 @@ class _SpalshViewState extends State<SpalshView> {
             Transform.translate(
               offset: Offset(0, -60),
               child: Text(
-                AppStrings.coffeeApp,
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
+                    AppStrings.dailyDose,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  )
+                  .animate()
+                  .moveY(duration: 900.ms, begin: 30)
+                  .fadeIn(duration: 900.ms),
             ),
           ],
         ),

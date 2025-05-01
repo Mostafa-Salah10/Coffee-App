@@ -1,5 +1,6 @@
 abstract class AppStrings {
   static const String coffeeApp = "Coffee App";
+  static const String dailyDose = "Daily Dose";
   static const String coffeeTaste = "CAFFEE TASTE";
   static const String findYourFav = "Find Your Favorite";
   static const String onboardingDesc =
