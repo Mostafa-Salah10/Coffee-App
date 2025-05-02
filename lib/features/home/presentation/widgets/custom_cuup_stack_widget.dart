@@ -10,6 +10,7 @@ class CustomCupStackWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
+      alignment: Alignment.center,
       children: [
         _getStackImage(coffeeModel.imagePath),
         Positioned.fill(
@@ -22,18 +23,11 @@ class CustomCupStackWidget extends StatelessWidget {
 
   Positioned _getStackImage(String image) {
     return Positioned(
-      top: -150 / 2,
-      left: 0,
-      right: 0,
-      child: Center(
-        child: SizedBox(
-          height: 180,
-          width: 180,
-          child: Hero(
-            tag: image,
-            child: Image.asset(image, fit: BoxFit.contain),
-          ),
-        ),
+      top: -160 / 2,
+      width: 160,
+      height: 160,
+      child: SizedBox(
+        child: Hero(tag: image, child: Image.asset(image, fit: BoxFit.contain)),
       ),
     );
   }

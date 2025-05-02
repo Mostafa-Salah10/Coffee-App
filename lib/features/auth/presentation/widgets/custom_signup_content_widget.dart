@@ -8,6 +8,7 @@ import 'package:coffee_app/features/auth/presentation/widgets/check_have_account
 import 'package:coffee_app/features/auth/presentation/widgets/custom_header_text_apbar_auth.dart';
 import 'package:coffee_app/features/auth/presentation/widgets/custom_signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,40 +27,43 @@ class CsutomSignUpContentWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 25.w),
         child: Column(
           children: [
-            CustomTextHeaderAppBarAuth(
-              title: AppStrings.signUp,
-              subTitle: AppStrings.createAccount,
-            ),
-            SizedBox(height: 35.h),
-            CustomSignUpForm(),
-            SizedBox(height: 15.h),
-            Text(
-              AppStrings.forgotPass,
-              style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                color: AppColors.arrowButton,
-                decoration: TextDecoration.underline,
-                decorationColor: AppColors.arrowButton,
-              ),
-            ),
-            SizedBox(height: 40.h),
-            CustomButton(
-              text: AppStrings.signUp,
-              onPressed: () {
-                if (auth.signUpKey.currentState!.validate()) {
-                  customPushReplacement(
-                    context,
-                    route: AppRoutes.bottomNavBarScreen,
-                  );
-                }
-              },
-            ),
-            SizedBox(height: 20.h),
-            CheckHaveAnAccountWidget(
-              text1: AppStrings.alreadyHaveAccount,
-              text2: AppStrings.signIn,
-              route: AppRoutes.signInScreen,
-            ),
-          ],
+                CustomTextHeaderAppBarAuth(
+                  title: AppStrings.signUp,
+                  subTitle: AppStrings.createAccount,
+                ),
+                SizedBox(height: 35.h),
+                CustomSignUpForm(),
+                SizedBox(height: 15.h),
+                Text(
+                  AppStrings.forgotPass,
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: AppColors.arrowButton,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.arrowButton,
+                  ),
+                ),
+                SizedBox(height: 40.h),
+                CustomButton(
+                  text: AppStrings.signUp,
+                  onPressed: () {
+                    if (auth.signUpKey.currentState!.validate()) {
+                      customPushReplacement(
+                        context,
+                        route: AppRoutes.bottomNavBarScreen,
+                      );
+                    }
+                  },
+                ),
+                SizedBox(height: 20.h),
+                CheckHaveAnAccountWidget(
+                  text1: AppStrings.alreadyHaveAccount,
+                  text2: AppStrings.signIn,
+                  route: AppRoutes.signInScreen,
+                ),
+              ]
+              .animate(interval: 200.ms)
+              .moveY(duration: 700.ms, begin: 20)
+              .fadeIn(duration: 700.ms),
         ),
       ),
     );

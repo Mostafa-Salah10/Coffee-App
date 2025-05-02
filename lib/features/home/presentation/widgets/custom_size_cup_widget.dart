@@ -3,6 +3,7 @@ import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/features/home/data/manager/cubit/home_cubit.dart';
 import 'package:coffee_app/features/home/presentation/widgets/custom_text_container_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomSizeCupWidget extends StatelessWidget {
@@ -27,12 +28,16 @@ class CustomSizeCupWidget extends StatelessWidget {
                 return InkWell(
                   onTap: () => home.changeCoffeeSizeCurrentIndex(index: index),
                   child: CustomTextContainerWidget(
-                    coffeeSize: cofeeSize[index],
-                    color:
-                        home.coffeeSizeCurrentIndex == index
-                            ? AppColors.arrowButton
-                            : null,
-                  ),
+                        coffeeSize: cofeeSize[index],
+                        color:
+                            home.coffeeSizeCurrentIndex == index
+                                ? AppColors.arrowButton
+                                : null,
+                      )
+                      .animate()
+                      .moveX(duration: 700.ms, begin: 20)
+                      .fadeIn(duration: 700.ms)
+                      .then(delay: (index * 100).ms),
                 );
               },
             ),

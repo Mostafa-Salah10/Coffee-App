@@ -4,6 +4,7 @@ import 'package:coffee_app/core/utils/app_strings.dart';
 import 'package:coffee_app/core/utils/assets.dart';
 import 'package:coffee_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -49,7 +50,9 @@ class OnboardingView extends StatelessWidget {
                 },
               ),
             ),
-          ],
+          ].animate(interval: 200.ms)
+              .moveY(duration: 500.ms, begin: 20)
+              .fadeIn(duration: 500.ms),
         ),
       ),
     );

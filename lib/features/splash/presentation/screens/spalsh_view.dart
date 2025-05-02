@@ -41,8 +41,8 @@ class _SpalshViewState extends State<SpalshView> {
                     style: Theme.of(context).textTheme.headlineLarge,
                   )
                   .animate()
-                  .moveY(duration: 900.ms, begin: 30)
-                  .fadeIn(duration: 900.ms),
+                  .moveY(duration: 1200.ms, begin: 30)
+                  .fadeIn(duration: 1200.ms),
             ),
           ],
         ),
