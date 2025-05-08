@@ -1,4 +1,5 @@
 import 'package:coffee_app/core/functions/custom_navigator.dart';
+import 'package:coffee_app/core/functions/toast_alert.dart';
 import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
@@ -43,15 +44,23 @@ class CustomSigninContentWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 100.h),
-                CustomButton(
-                  text: AppStrings.signUp,
-                  onPressed: () {
-                    if (auth.signInKey.currentState!.validate()) {
-                      customPushReplacement(
-                        context,
-                        route: AppRoutes.bottomNavBarScreen,
-                      );
+                BlocConsumer<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthSignOrSigbInSuccessState) {
+                      customPushReplacement(context, route: AppRoutes.bottomNavBarScreen);
+                    } else if (state is AuthSignOrSigbInFailureState) {
+                      toastAlert(color: AppColors.red, msg: state.errorMessage);
                     }
+                  },
+                  builder: (context, state) {
+                    return CustomButton(
+                      text: AppStrings.signUp,
+                      onPressed: () async {
+                        if (auth.signInKey.currentState!.validate()) {
+                          await auth.signInUserWithPhoneNumberAndPass();
+                        }
+                      },
+                    );
                   },
                 ),
                 SizedBox(height: 20.h),
@@ -62,8 +71,8 @@ class CustomSigninContentWidget extends StatelessWidget {
                 ),
               ]
               .animate(interval: 200.ms)
-              .moveY(duration: 700.ms, begin: 20)
-              .fadeIn(duration: 700.ms),
+              .moveY(duration: 600.ms, begin: 20)
+              .fadeIn(duration: 600.ms),
         ),
       ),
     );

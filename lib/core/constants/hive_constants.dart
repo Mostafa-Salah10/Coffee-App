@@ -4,4 +4,5 @@ abstract class HiveConstants {
   static const String categoryList = 'categoryList';
   static const String cartList = 'cartList';
   static const String favList = 'favList';
+  static const String userList = 'userList';
 }

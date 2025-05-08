@@ -18,6 +18,10 @@ abstract class AppStrings {
   static const String dontHaveAccount = "Don't have an account ? ";
   static const String fieldRequired = 'Field is Required';
   static const String fieldShort = 'Field Must be more than 10 characters';
+  static const String checkPhone = 'Check Your Phone Or Password';
+  static const String userExist = 'User already exist';
+  static const String accountCreated = "Account Created Successfully";
+  static const String passNotMatch = 'Password not match';
   static const String locationName = 'Ain Shams';
   static const String search = 'Search';
   static const String categories = 'Categories';

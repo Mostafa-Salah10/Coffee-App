@@ -1,4 +1,5 @@
 import 'package:coffee_app/core/functions/custom_navigator.dart';
+import 'package:coffee_app/core/functions/toast_alert.dart';
 import 'package:coffee_app/core/routes/app_routes.dart';
 import 'package:coffee_app/core/utils/app_colors.dart';
 import 'package:coffee_app/core/utils/app_strings.dart';
@@ -43,15 +44,30 @@ class CsutomSignUpContentWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 40.h),
-                CustomButton(
-                  text: AppStrings.signUp,
-                  onPressed: () {
-                    if (auth.signUpKey.currentState!.validate()) {
-                      customPushReplacement(
-                        context,
-                        route: AppRoutes.bottomNavBarScreen,
+                BlocConsumer<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthSignOrSigbInSuccessState) {
+                      toastAlert(
+                        color: AppColors.green,
+                        msg: AppStrings.accountCreated,
                       );
+                      customPushAndRemoveAll(
+                        context,
+                        route: AppRoutes.signInScreen,
+                      );
+                    } else if (state is AuthSignOrSigbInFailureState) {
+                      toastAlert(color: AppColors.red, msg: state.errorMessage);
                     }
+                  },
+                  builder: (context, state) {
+                    return CustomButton(
+                      text: AppStrings.signUp,
+                      onPressed: () async {
+                        if (auth.signUpKey.currentState!.validate()) {
+                          await auth.createUserWithPhoneNumberAndPass();
+                        }
+                      },
+                    );
                   },
                 ),
                 SizedBox(height: 20.h),
@@ -62,8 +78,8 @@ class CsutomSignUpContentWidget extends StatelessWidget {
                 ),
               ]
               .animate(interval: 200.ms)
-              .moveY(duration: 700.ms, begin: 20)
-              .fadeIn(duration: 700.ms),
+              .moveY(duration: 400.ms, begin: 20)
+              .fadeIn(duration: 400.ms),
         ),
       ),
     );

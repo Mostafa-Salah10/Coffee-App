@@ -1,5 +1,6 @@
 import 'package:coffee_app/core/constants/hive_constants.dart';
 import 'package:coffee_app/core/enums/coffee_size_enum.dart';
+import 'package:coffee_app/features/auth/data/model/user_type_adapter.dart';
 import 'package:coffee_app/features/home/data/models/category_model_type_adapter.dart';
 import 'package:coffee_app/features/home/data/models/coffee_model_type_adapter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -11,6 +12,7 @@ class HiveService {
     Hive.registerAdapter(CategoryModelTypeAdapter());
     Hive.registerAdapter(CoffeeSizeAdapter());
     Hive.registerAdapter(CoffeeModelTypeAdapter());
+    Hive.registerAdapter(UserModelAdapter());
     //open box here
     await openBox(boxName: HiveConstants.boxName);
   }

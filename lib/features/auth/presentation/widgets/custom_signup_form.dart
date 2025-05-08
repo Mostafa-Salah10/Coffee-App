@@ -19,12 +19,16 @@ class CustomSignUpForm extends StatelessWidget {
           CustomTextFormField(
             keyboardType: TextInputType.phone,
             label: AppStrings.phoneNum,
-            onChanged: (phone) {},
+            onChanged: (phone) {
+              auth.phoneNumber = phone;
+            },
             prefixIcon: _getIcon(icon: Icons.phone_android),
           ),
           CustomTextFormField(
             label: AppStrings.pass,
-            onChanged: (pass) {},
+            onChanged: (pass) {
+              auth.pass = pass;
+            },
             prefixIcon: _getIcon(icon: Icons.password),
             isSecure: auth.isSecure,
             onTapSuffixIcon: () => auth.togglePassIcon(),
@@ -36,7 +40,9 @@ class CustomSignUpForm extends StatelessWidget {
           CustomTextFormField(
             isSecure: true,
             label: AppStrings.rePass,
-            onChanged: (rePass) {},
+            onChanged: (rePass) {
+              auth.confirmPass = rePass;
+            },
             prefixIcon: _getIcon(icon: Icons.password),
           ),
         ],
